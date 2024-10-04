@@ -52,9 +52,7 @@ Sabor Adam Bts sio / fait en septembre 2024
    
 3. lister les utilisateurs qui sont Admin
 4. recuperer tout les trajets sur une une periode
-5.
-a- Ajout d'un employé avec toute les info
-b- supprimer un employé avec id ou login
+5.a- Ajout d'un employé avec toute les infob- supprimer un employé avec id ou login
 6. modifier le temps d'arriver d'un trajet avec son code
 
 

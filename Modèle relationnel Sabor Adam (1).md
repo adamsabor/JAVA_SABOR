@@ -1,5 +1,5 @@
 ---
-title: Modèle relationnel Sabor Adam
+Modèle relationnel Sabor Adam
 
 ---
 
@@ -46,5 +46,16 @@ Sabor Adam Bts sio / fait en septembre 2024
 - **arretArrivee_id** : `INT(3)`  
   - Clé étrangère, référence à `Arret(id)`
 
-r
+---
+## requetes BDD potentielles
+1. recuperer l'utilisateurs qui a un login = ....
+   
+3. lister les utilisateurs qui sont Admin
+4. recuperer tout les trajets sur une une periode
+5.
+a- Ajout d'un employé avec toute les info
+b- supprimer un employé avec id ou login
+6. modifier le temps d'arriver d'un trajet avec son code
+
+
 

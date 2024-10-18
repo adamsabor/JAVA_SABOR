@@ -1,8 +1,3 @@
----
-title: Modèle relationnel Sabor Adam
-
----
-
 # Mission EasyTrain
 Sabor Adam Bts sio / fait en septembre 2024
 
@@ -47,11 +42,10 @@ Sabor Adam Bts sio / fait en septembre 2024
   - Clé étrangère, référence à `Arret(id)`
 
 
-
-# Adam Sabor requete
-### 1. Récupérer l'utilisateur (toutes les colonnes) qui a un login = 'loginlo'
+#  requete SQL
+### 1. Récupérer l'utilisateur (toutes les colonnes) qui a un login = ...
 ```sql
-SELECT * FROM Utilisateur WHERE email = 'loginlo';
+SELECT id,login,mdp,nom,prenom,date_embauche FROM Utilisateur WHERE login="Adam";
 ```
 
 ### 2. Lister les utilisateurs qui sont admin

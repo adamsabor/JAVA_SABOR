@@ -48,36 +48,36 @@ Sabor Adam Bts sio / fait en septembre 2024
 
 
 
-# Adam Sabor requete
-### 1. Récupérer l'utilisateur (toutes les colonnes) qui a un login = 'loginlo'
+# Adam Sabor 6 requete
+### 1. Récupérer l'utilisateur (toutes les colonnes) qui a un login = 'Adam'
 ```sql
-SELECT * FROM Utilisateur WHERE email = 'loginlo';
+SELECT id,login,mdp,nom,prenom,role,date_embauche FROM Utilisateur WHERE login = 'Adam';
 ```
 
 ### 2. Lister les utilisateurs qui sont admin
 ```sql
-SELECT * FROM Utilisateur WHERE role = 'ADMIN';
+SELECT id,login,mdp,nom,prenom,role,date_embauche FROM Utilisateur WHERE role = 'ADMIN';
 ```
 
 ### 3. Récupérer les trajets sur une période
 ```sql
-SELECT * FROM Trajet WHERE heureDepart BETWEEN '2024-01-01' AND '2024-12-31';
+SELECT code,temps_depart,temps_arrive,arret_depart_id,arret_arrivee_id, FROM TRAJET WHERE temps_depart BETWEEN <date1> AND <date2> AND temps_arrivee BETWEEN <date1> AND <date2>;
 ```
 
 ### 4. (a) Ajouter un employé avec toutes les informations
 ```sql
-INSERT INTO Utilisateur (nom, prenom, email, motDePasse, dateDeNaissance, role) 
-VALUES ('Dupont', 'Jean', 'jean.dupont@example.com', 'password123', '1990-04-15', 'EMPLOYE');
+INSERT INTO Utilisateur (id,login,mdp,nom,prenom,role,date_embauche) 
+VALUES ('ADAM','Sabor', 'Adam', 'saboradam5@gmail.com', SHA2 ('ADAM',password123,256), '2003-05-05', 'ADMIN',<date>)
 ```
 
 ### 4. (b) Supprimer un employé avec id ou login
 ```sql
-DELETE FROM Utilisateur WHERE id = 5 OR email = 'login@example.com';
-```
+DELETE FROM Utilisateur WHERE id = 5 OR DELETE FROM Utilisateur WHERE iemail = 'login@example.com'
 
 ### 5. Modifier le temps d'arrivée d'un trajet avec son code
+                                                                
 ```sql
-UPDATE Trajet SET heureDepart = '18:00:00' WHERE id = 3;
+UPDATE Trajet SET tempsarrive = <nouvelledate>,tempsDepart='<nouvelledate2>'&é"'(....) WHERE id = 3;
 ```
 
 

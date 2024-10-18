@@ -16,9 +16,11 @@ public class TestJDBC {
         try {
             Connection connection = DriverManager.getConnection(
                     urlLocal ,userLocal,pwdLocal);
-            System.out.println("OKÒ");
+            System.out.println("OK");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
     }
+
+    /// a faire statement statement=flux des requetes

@@ -12,11 +12,15 @@ public class TestJDBC {
         String urlDistant="localhost:3306/EasyTrain";
         String userDistant = "root" ;
         String pwdDistant ="";
+       
+         String urlAlwaysData = "jdbc:mysql://adamdev.alwaysdata.net:3306/adamdev_database";
+         String userAlwaysData = "AdamDev";
+        String pwdAlwaysData = "root";
 /// creation d'une connexion a la bdd
         try {
             Connection connection = DriverManager.getConnection(
                     urlLocal ,userLocal,pwdLocal);
-            System.out.println("OKÒ");
+            System.out.println("OK");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

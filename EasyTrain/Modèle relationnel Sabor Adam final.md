@@ -43,36 +43,39 @@ Sabor Adam Bts sio / fait en septembre 2024
 
 
 #  requete SQL
-### 1. Récupérer l'utilisateur (toutes les colonnes) qui a un login = ...
-```sql
-SELECT id,login,mdp,nom,prenom,date_embauche FROM Utilisateur WHERE login="Adam";
-```
+### 1. Récupérer l'utilisateur qui a login = ... et un mdp = ...
+ SELECT id, login, mdp, nom, prenom, role, date_embauche,
+FROM utilisateur
+WHERE login='unloginparticulier'
+AND mdp = SHA2 ('lemdpsaisie' 256);
+
 
 ### 2. Lister les utilisateurs qui sont admin
-```sql
-SELECT * FROM Utilisateur WHERE role = 'ADMIN';
-```
+SELECT id, login, mdp, nom, prenom, role, date_embauche
+FROM utilisateur
+WHERE role='ADMIN';
+
 
 ### 3. Récupérer les trajets sur une période
-```sql
-SELECT * FROM Trajet WHERE heureDepart BETWEEN '2024-01-01' AND '2024-12-31';
-```
+SELECT code, tempsDepart, tempsArrivee, arretDepart_id, arretArrivee_id, ad.nom as nomAD, ad.id as idAD,
+aa.nom as nomAA, aa.id as idAA
+FROM arret ad JOIN trajet t ON ad.id=t.arretDepart_id
+               JOIN = Arret aa ON t.arretArrivee_id=aa.id
+WHERE temps_depart BETWEEN '<date1>' AND '<date2>'
+   AND temps_arrivee BETWEEN '<date1>' AND '<date2>'
 
 ### 4. (a) Ajouter un employé avec toutes les informations
-```sql
-INSERT INTO Utilisateur (nom, prenom, email, motDePasse, dateDeNaissance, role) 
-VALUES ('Dupont', 'Jean', 'jean.dupont@example.com', 'password123', '1990-04-15', 'EMPLOYE');
-```
+INSERT INTO utilisateur (login, mdp, nom, prenom, role, date_embauche)
+VALUES ('leLogin', SHA2('leLogin', 256), 'leNom', 'leprenom', 'EMPLOYE', '<date>')
+
 
 ### 4. (b) Supprimer un employé avec id ou login
-```sql
-DELETE FROM Utilisateur WHERE id = 5 OR email = 'login@example.com';
-```
+DELETE FROM utilisateur WHERE id =3 ou
+DELETE FROM utilisateur WHERE login ='leLogin'
+
 
 ### 5. Modifier le temps d'arrivée d'un trajet avec son code
-```sql
-UPDATE Trajet SET heureDepart = '18:00:00' WHERE id = 3;
-```
-
+UPDATE trajet SET tempsArrivee='<nouvelledate>', tempsDepart='<nouvelledate2>'[,...]
+   WHERE code='LeCode';
 
 

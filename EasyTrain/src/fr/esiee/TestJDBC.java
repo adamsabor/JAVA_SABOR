@@ -8,6 +8,7 @@ import fr.esiee.modele.Role;
 import java.sql.*;
 
 public class TestJDBC {
+<<<<<<< HEAD
 
     // Connexion AlwaysData (fictive)
     private static final String ALWAYS_DATA_URL = "jdbc:mysql://mysql-12345.alwaysdata.net/fake_database";
@@ -31,6 +32,24 @@ public class TestJDBC {
             Connection conn = DriverManager.getConnection(ALWAYS_DATA_URL, ALWAYS_DATA_USER, ALWAYS_DATA_PASSWORD);
             System.out.println("Connexion à AlwaysData établie !");
             return conn;
+=======
+    public static void main(String[] args) {
+        String urlLocal= "jdbc:mariadb://localhost:8889/EasyTrain";
+        String userLocal = "root" ;
+        String pwdLocal ="root";
+        String urlDistant="localhost:3306/EasyTrain";
+        String userDistant = "root" ;
+        String pwdDistant ="";
+       
+         String urlAlwaysData = "jdbc:mysql://adamdev.alwaysdata.net:3306/adamdev_database";
+         String userAlwaysData = "AdamDev";
+        String pwdAlwaysData = "root";
+/// creation d'une connexion a la bdd
+        try {
+            Connection connection = DriverManager.getConnection(
+                    urlLocal ,userLocal,pwdLocal);
+            System.out.println("OK");
+>>>>>>> 3ec60e6cdd8a5c496872082c50d75349f7582412
         } catch (SQLException e) {
             System.out.println("Échec AlwaysData, tentative de connexion locale...");
             try {
@@ -136,4 +155,8 @@ public class TestJDBC {
             System.out.println("Connexion fermée !");
         }
     }
+<<<<<<< HEAD
 }
+=======
+    }
+>>>>>>> 3ec60e6cdd8a5c496872082c50d75349f7582412

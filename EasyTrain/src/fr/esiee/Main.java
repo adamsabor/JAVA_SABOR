@@ -1,34 +1,65 @@
 package fr.esiee;
 
+import fr.esiee.dao.UtilisateurDAO;
 import fr.esiee.modele.Utilisateur;
-import fr.esiee.modele.Trajet;
-import fr.esiee.modele.Arret;
 import fr.esiee.modele.Role;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.time.LocalDateTime;
-import java.time.LocalDate;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        // Création d'arrêts
-        Arret arret1 = new Arret(1, "Gare de Meulan");
-        Arret arret2 = new Arret(2, "Cergy prefecture");
-        Arret arret3 = new Arret(3, "Gare de Saint Lazare");
+        try {
+            // Connexion à la base de données
+            Connection connection = DriverManager.getConnection("jdbc:mariadb://localhost:8889/EasyTrain", "root", "root");
 
-        // Création de trajets en reliant des arrêts
-        Trajet trajet1 = new Trajet("T123", LocalDateTime.of(2024, 10, 4, 8, 0),
-                LocalDateTime.of(2024, 10, 4, 9, 0), arret1, arret2);
-        Trajet trajet2 = new Trajet("T124", LocalDateTime.of(2024, 10, 4, 14, 0),
-                LocalDateTime.of(2024, 10, 4, 15, 0), arret2, arret3);
+            // Instanciation du DAO
+            UtilisateurDAO utilisateurDAO = new UtilisateurDAO(connection);
 
-        // Création d'utilisateurs avec rôle
-        Utilisateur user1 = new Utilisateur(3, "Adam", "mdp123", "Adam", "Sabor", LocalDateTime.of(2023, 5, 10, 9, 0), Role.ADMIN);
-        Utilisateur user2 = new Utilisateur(4, "Wissam", "mdp456", "Wissam", "Sabor", LocalDateTime.of(2023, 5, 10, 9, 0), Role.EMPLOYE);
+            // Menu pour tester les fonctionnalités du DAO
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("=== Menu Utilisateur ===");
+            System.out.println("1. Ajouter un utilisateur");
+            System.out.println("2. Lire un utilisateur par ID");
+            System.out.println("3. Mettre à jour un utilisateur");
+            System.out.println("4. Supprimer un utilisateur");
+            System.out.println("5. Quitter");
+            int choix = scanner.nextInt();
 
-        // Affichage des informations
-        System.out.println(user1);
-        System.out.println(user2);
-        System.out.println(trajet1);
-        System.out.println(trajet2);
+            switch (choix) {
+                case 1:
+                    Utilisateur utilisateur = new Utilisateur(0, "login", "mdp", "Nom", "Prenom", LocalDateTime.now(), Role.EMPLOYE);
+                    utilisateurDAO.ajouterUtilisateur(utilisateur);
+                    break;
+                case 2:
+                    System.out.print("ID de l'utilisateur : ");
+                    int id = scanner.nextInt();
+                    Utilisateur user = utilisateurDAO.lireUtilisateur(id);
+                    System.out.println(user != null ? user : "Utilisateur non trouvé");
+                    break;
+                case 3:
+                    // Logique de mise à jour
+                    break;
+                case 4:
+                    System.out.print("ID de l'utilisateur à supprimer : ");
+                    int idSup = scanner.nextInt();
+                    utilisateurDAO.supprimerUtilisateur(idSup);
+                    break;
+                case 5:
+                    System.out.println("Au revoir !");
+                    break;
+                default:
+                    System.out.println("Option invalide");
+            }
+
+            // Fermeture de la connexion
+            connection.close();
+
+        } catch (SQLException e) {
+            System.out.println("Erreur SQL : " + e.getMessage());
+        }
     }
 }

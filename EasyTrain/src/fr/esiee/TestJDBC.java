@@ -12,8 +12,8 @@ public class TestJDBC {
 
     // Connexion AlwaysData (fictive)
     private static final String ALWAYS_DATA_URL = "jdbc:mysql://mysql-12345.alwaysdata.net/fake_database";
-    private static final String ALWAYS_DATA_USER = "fake_user";
-    private static final String ALWAYS_DATA_PASSWORD = "fake_password";
+    private static final String ALWAYS_DATA_USER = "adamdev";
+    private static final String ALWAYS_DATA_PASSWORD = "root";
 
     // Connexion locale
     private static final String LOCAL_URL = "jdbc:mariadb://localhost:8889/EasyTrain";

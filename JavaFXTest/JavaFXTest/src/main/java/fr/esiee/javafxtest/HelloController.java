@@ -21,11 +21,11 @@ public class HelloController {
         if (inputName.isEmpty()) {
             // Si le champ est vide, afficher un message d'erreur en rouge
             l_welcomeText.setText("Erreur.. saisir votre nom");
-            l_welcomeText.setStyle("-fx-text-fill: red;"); // Changer la couleur en rouge
+            l_welcomeText.setStyle("-fx-text-fill: red;"); // Couleur par rougeez
         } else {
             // Si un nom est saisi, afficher un message de bienvenue
             l_welcomeText.setText("Bienvenue, " + inputName + " !");
-            l_welcomeText.setStyle("-fx-text-fill: black;"); // Couleur par défaut (noir)
+            l_welcomeText.setStyle("-fx-text-fill: black;"); // Couleur par défaut
         }
     }
 }

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox alignment="CENTER" spacing="20.0"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="fr.esiee.easytrainfx.AjoutArretController">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+    </padding>
+
+    <!-- Titre -->
+    <Label text="Ajout d'un nouvel arrêt" style="-fx-font-size: 20px;"/>
+
+    <!-- Champ nom -->
+    <VBox spacing="5">
+        <Label text="Nom de l'arrêt :"/>
+        <TextField fx:id="nomArret"/>
+    </VBox>
+
+    <!-- Type d'arrêt -->
+    <VBox spacing="5">
+        <Label text="Type d'arrêt :"/>
+        <ComboBox fx:id="typeArret" prefWidth="200"/>
+    </VBox>
+
+    <!-- Boutons -->
+    <HBox spacing="10" alignment="CENTER">
+        <Button text="Réinitialiser" onAction="#onReinitialiserClick"/>
+        <Button text="Ajouter" onAction="#onAjouterClick"/>
+    </HBox>
+
+    <!-- Message d'information -->
+    <Label fx:id="messageLabel" wrapText="true"/>
+</VBox>

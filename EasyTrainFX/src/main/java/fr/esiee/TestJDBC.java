@@ -9,7 +9,7 @@ public class TestJDBC {
 
     private static final String URL_LOCAL = "jdbc:mariadb://localhost:8889/EasyTrain";
     private static final String USER_LOCAL = "root";
-    private static final String PWD_LOCAL = "root";
+    private static final String PWD_LOCAL = "";
 
     public static void main(String[] args) {
         System.out.println("=== Test des connexions ===");

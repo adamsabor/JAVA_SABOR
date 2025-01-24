@@ -1,98 +1,62 @@
 package fr.esiee.easytrainfx;
 
-import fr.esiee.dao.EasyTrainDAO;
-import fr.esiee.modele.Role;
+import fr.esiee.dao.EasyTrainDAO;   // Changé de UtilisateurDAO à EasyTrainDAO
 import fr.esiee.modele.Utilisateur;
+import fr.esiee.modele.Role;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-
-import java.util.List;
+import java.time.LocalDateTime;
+import java.sql.SQLException;
 
 public class AjoutUtilisateurController {
+    @FXML private TextField loginField;
+    @FXML private PasswordField passwordField;
+    @FXML private TextField nomField;
+    @FXML private TextField prenomField;
+    @FXML private ComboBox<Role> roleCombo;
+    @FXML private Label messageLabel;
 
-    @FXML
-    private TextField nomField;
-
-    @FXML
-    private TextField prenomField;
-
-    @FXML
-    private TextField emailField;
-
-    @FXML
-    private PasswordField passwordField;
-
-    @FXML
-    private ComboBox<Role> roleComboBox;
-
-    @FXML
-    private Label statusLabel;
-
-    private final EasyTrainDAO easyTrainDAO = new EasyTrainDAO();
+    private EasyTrainDAO dao = new EasyTrainDAO();  // Changé ici aussi
 
     @FXML
     public void initialize() {
-        // Initialiser la ComboBox avec les rôles disponibles
+        // Remplir la combo box avec les valeurs de l'enum Role
+        roleCombo.getItems().addAll(Role.values());
+    }
+
+    @FXML
+    protected void onAjouterClick() {
         try {
-            List<Role> roles = easyTrainDAO.getAllRoles(); // Méthode DAO pour récupérer les rôles
-            roleComboBox.getItems().addAll(roles);
-        } catch (Exception e) {
-            statusLabel.setText("Erreur lors du chargement des rôles !");
-            statusLabel.setStyle("-fx-text-fill: red;");
-            e.printStackTrace();
+            Utilisateur user = new Utilisateur(
+                    0,
+                    loginField.getText(),
+                    passwordField.getText(),
+                    nomField.getText(),
+                    prenomField.getText(),
+                    LocalDateTime.now(),
+                    roleCombo.getValue()
+            );
+
+            if(dao.ajouterUtilisateur(user)) {
+                messageLabel.setText("Utilisateur ajouté avec succès !");
+                viderChamps();
+            }
+        } catch (SQLException e) {
+            messageLabel.setText("Erreur : " + e.getMessage());
         }
     }
 
     @FXML
-    public void handleReset() {
-        // Réinitialiser tous les champs
+    protected void onReinitialiserClick() {
+        viderChamps();
+        messageLabel.setText("");
+    }
+
+    private void viderChamps() {
+        loginField.clear();
+        passwordField.clear();
         nomField.clear();
         prenomField.clear();
-        emailField.clear();
-        passwordField.clear();
-        roleComboBox.getSelectionModel().clearSelection();
-        statusLabel.setText("");
-    }
-
-    @FXML
-    public void handleAdd() {
-        // Vérifier les champs
-        String nom = nomField.getText();
-        String prenom = prenomField.getText();
-        String email = emailField.getText();
-        String password = passwordField.getText();
-        Role role = roleComboBox.getValue();
-
-        if (nom.isEmpty() || prenom.isEmpty() || email.isEmpty() || password.isEmpty() || role == null) {
-            statusLabel.setText("Veuillez remplir tous les champs !");
-            statusLabel.setStyle("-fx-text-fill: red;");
-            return;
-        }
-
-        // Créer l'utilisateur
-        Utilisateur utilisateur = new Utilisateur();
-        utilisateur.setNom(nom);
-        utilisateur.setPrenom(prenom);
-        utilisateur.setEmail(email);
-        utilisateur.setPassword(password);
-        utilisateur.setRole(role);
-
-        try {
-            // Ajouter l'utilisateur via DAO
-            boolean success = easyTrainDAO.ajouterUtilisateur(utilisateur);
-
-            if (success) {
-                statusLabel.setText("Utilisateur ajouté avec succès !");
-                statusLabel.setStyle("-fx-text-fill: green;");
-                handleReset(); // Réinitialiser les champs après l'ajout
-            } else {
-                statusLabel.setText("Erreur lors de l'ajout de l'utilisateur.");
-                statusLabel.setStyle("-fx-text-fill: red;");
-            }
-        } catch (Exception e) {
-            statusLabel.setText("Erreur lors de l'ajout : " + e.getMessage());
-            statusLabel.setStyle("-fx-text-fill: red;");
-            e.printStackTrace();
-        }
+        roleCombo.setValue(null);
     }
 }

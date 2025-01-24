@@ -31,3 +31,12 @@
 - **Problème :** Ajustement de la vue pour correspondre aux nouvelles exigences.  
   **Solution :** Réorganisation des champs et validation des données dans le contrôleur.
 
+---
+
+## Difficultés Rencontrées
+
+Je n'ai pas réussi à faire fonctionner la vue en raison d'une erreur JDBC. 
+Cette erreur est regrettable car, à part ce problème de connexion, le reste de l'application devrait fonctionner comme prévu.
+
+
+

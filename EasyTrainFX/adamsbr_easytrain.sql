@@ -96,18 +96,18 @@ DELIMITER $$
 CREATE TRIGGER `verif_nom_utilisateur_insert` BEFORE INSERT ON `Utilisateur` FOR EACH ROW BEGIN
     IF LOWER(NEW.nom) = 'test' THEN
         SIGNAL SQLSTATE '45000'
-            SET MESSAGE_TEXT = 'Erreur : le nom ne peut pas être "test" .';
+            SET MESSAGE_TEXT = 'Erreur !!!: le nom ne peut pas être "test" .';
     END IF;
 END
 $$
 DELIMITER ;
 
--- Triggers `pour updat   dans Utilisateur`
+-- Triggers `pour update   dans Utilisateur`
 DELIMITER $$
 CREATE TRIGGER `verif_nom_utilisateur_update` BEFORE UPDATE ON `Utilisateur` FOR EACH ROW BEGIN
     IF LOWER(NEW.nom) = 'test' THEN
         SIGNAL SQLSTATE '45000'
-            SET MESSAGE_TEXT = 'Erreur : le nom ne peut pas être "test" .';
+            SET MESSAGE_TEXT = 'Erreur !!! : le nom ne peut pas être "test" .';
     END IF;
 END
 $$

@@ -8,6 +8,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class EasyTrainApplication extends Application {
+    public static Scene maScene ;
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -24,7 +25,10 @@ public class EasyTrainApplication extends Application {
         stage.show();
     }
 
-    public static void main(String[] args) {
+
+
+
+   public static void main(String[] args) {
         // Lancer l'application
         launch();
     }

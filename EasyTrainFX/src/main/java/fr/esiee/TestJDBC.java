@@ -3,7 +3,7 @@ package fr.esiee;
 import java.sql.*;
 
 public class TestJDBC {
-    private static final String URL_DISTANT = "jdbc:mysql://adamdev.alwaysdata.net:3306/adamdev_database";
+    private static final String URL_DISTANT = "https://phpmyadmin.alwaysdata.com/phpmyadmin/index.php?route=/database/export&db=adamsbr_easytrain";
     private static final String USER_DISTANT = "AdamDev";
     private static final String PWD_DISTANT = "root";
 

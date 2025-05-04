@@ -32,4 +32,14 @@ class DeviseTest {
     @Test
     void testEqual() {
     }
+
+    @Test
+    void testAddSimple() {
+
+        Devise euro = new Devise(100, "euro");
+        Devise euro2 = new Devise(50, "euro");
+        Devise resultatAttendu = new Devise(150, "euro");
+
+        assertEquals(resultatAttendu, euro.add(euro2));
+    }
 }
